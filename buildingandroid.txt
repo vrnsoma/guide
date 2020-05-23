@@ -110,7 +110,7 @@ running the same SOC, so keep an eye out for that.
 • For example; we need to go to "device_samsung_crownlte" tree not "device_samsung_universal9810-common"
 • In here the three files that need modification are
 1) Android Products.mk
-2) lineage.dependencies.mk
+2) lineage.dependencies
 3) lineage_"device codename".mk (example:lineage_crownlte.mk)
 • First open AndriodProducts.mk and click the pencil icon at the top right corner of the box that
 encloses the code. Here replace wherever you see lineage with name of ROM in lowercase only.
