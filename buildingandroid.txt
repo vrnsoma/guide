@@ -1,0 +1,175 @@
+Table of Contents
+1) Getting started
+2) Preparing Linux environment
+3) Getting the source
+4) Getting device specific files
+5) Building
+
+
+ GETTING STARTED
+
+• This guide will help you understand the basics of rom building.
+• You must read everything at least once
+• If you get stuck at any step, google is your best friend. If you still struggle, these are places you can get help 
+  1) This thread
+  2) GitHub
+  3) Other XDA threads
+  4) Telegram (Your SOC groups or Android Builders Help)
+• Build only if you have time to spare, never rush through the learning stage
+• Never think about skipping a step
+• If you are planning to modify a ROM, always ask for permission
+• If you are planning on including other people work in your rom always ask for permission
+
+Prerequisites
+• Your system should have at least 8GB RAM and 4 cores (Use Zram for 8gb ram devices)
+• Strong internet connection. You will be downloading 30-50GB worth of files
+• Ubuntu - this should be installed alongside a primary OS. NOT VM
+• Minimum 250GB of free disk space (you can sync 1 ROMs and build for 3 devices at once)
+• Git - Reas some documentation
+• Command Line - get yourself familiar, learn with CodeAcademy
+
+
+
+
+ PREPARING LINUX ENVIRONMENT
+• Now the you have finished setting up, a special environment is required for building.
+• Preparing the environment is as easy as double clicking .exe in Windows or .dmg in MacOS, thanks to developer Akhil N.
+• We need to clone his scripts (installer) from his GitHub
+	NOTE:
+	    A script is a file which contains multiple commands that run sequentially when executed
+### git clone https://github.com/akhilnarang/scripts
+• This should copy the scripts to directory /home/username/scripts
+• Cd into the directory called setup
+### cd scripts/setup
+• List out directory
+### ls
+• Find the file that corresponds to our Linux build. Since we are using Ubuntu it will be android_build_env.sh
+• Run the script
+###. android_build_env.sh
+• Setup GitHub using on screen instructions
+• Congratulations you set up your computer for building
+• Go back the previous dir that you were originally on...I will call this Original Dir from now
+### cd .. && cd ..
+
+
+
+
+ GETTING THE SOURCE
+• This is probably one of the worst steps, you have to wait a while 
+• GCloud users will be able to download source in 15 minutes
+• Other users may have to wait longer (depends on internet connection speed)
+• Make a directory for your ROM
+### mkdir “ROMNAME”
+• Cd in and initiate repository, this basically tells your computer where to download source files
+from. The repository initiation command can be found on the GitHub page under “manifest” then scroll down to repo initialisation and copy command
+• It should look like
+###  repo init -u git://github.com/crdroidandroid/android.git -b 10.0
+		HINTS
+			1) Linux users can paste into terminal using Ctrl + Shift + V
+			2) Linux users can copy from terminal using Ctrl + Shift + C
+			3) GCloud users can paste into window using Ctrl + V
+			4) GCloud users can copy from window simply by highlighting
+			5) GCloud users using ssh from terminal can just follow terminal commands
+• Once repo is initialised, you can begin download using
+###     repo sync  -f --force-sync --no-clone-bundle --no-tags -j$(nproc --all)
+• Let everything download
+
+
+
+
+GETTING DEVICE SPECIFIC FILES
+• As most of you know the kernel acts as the translator between the OS and your actual hardware
+• The files mentioned above are android version specific and will only work with that android
+version
+• The developer for your device will have these files on their GitHub and its usually linked at the
+op of other rom threads as source code
+• You have to make sure that the rom version you downloaded matches up
+• If the device tree is for an older version then wait until your dev. releases the latest trees, if no
+developer is working on your device then it is possible to modify the tree to work with newer
+version of android but if you are capable of doing that you wouldn’t be here
+• Your best option is to scrap everything and download the source version that your tree is
+designed for
+• To scrap everything, use
+ sudo rm -rf “folder containing rom"
+• To modify the init command to download an older version you need to pick out the branch you
+need (the branch is basically the version the newer version is added to a new branch)
+• Change the init command after -b to include desired branch. For example
+ repo init -b ten to repo init -b seven
+• There are two ways to download device specific files but before that we need to for them to
+your GitHub . find the stuff (kernel vendor device tree hardware) and fork them this basically
+copies them to your GitHub use the browser on your machine
+• At this point we need to know if we need to modify the device tree as some ROMs don’t require
+you to modify it (CrDroid)
+• If modification is required follow these steps , otherwise skip to the end of this section
+• After forking we need to modify one set of files we will do this from the browser for ease of
+understanding there are three files that need modification and they are located your device
+tree.
+• Some tree developers may split your device tree into two parts if there is more than one phone
+running the same SOC, so keep an eye out for that.
+• The files that we need to modify are under your "device codename" device tree, not "device SOC-common" device tree.
+• For example; we need to go to "device_samsung_crownlte" tree not "device_samsung_universal9810-common"
+• In here the three files that need modification are
+1) Android Products.mk
+2) lineage.dependencies.mk
+3) lineage_"device codename".mk (example:lineage_crownlte.mk)
+• First open AndriodProducts.mk and click the pencil icon at the top right corner of the box that
+encloses the code. Here replace wherever you see lineage with name of ROM in lowercase only.
+When saving click the option to stat pull request and create branch...trust me and do this, it will
+be helpful when you are building multiple ROMS. Better to start organising your work. Name the
+branch with the name of your ROM in lower case. You will be taken to another page... there
+change the tile to update "RomName". and click start pull request. This is all required to stay
+organised
+• Go back to device tree and you select the branch you just made, you can see that the file you
+modified is under this branch. Whatever you modify in this branch stays here until you merge
+master and branch. This is also very useful when you are making experimental changes, once it
+works you can merge it, but in this case we will never merge because we want our changes to
+stay separate
+• Second, open lineage dependencies.mk and hit the pencil icon... rename file to
+"romname".dependencies (ecample: aim.dependencies)
+• Third, open lineage_"codename".mk and rename to "romname"_"codename".mk and replace
+lineage with "romname in the code. (Remember,use lowercase)
+• Make sure that in above you are committing the changes to the branch you just created... If
+it says lineage instead, you didn't select the branch before modifying, go back to device tree and
+select correct branch
+• If you are building an older version of android make sure you branch out the right branch for your trees
+
+ People who do not need to modify can join us here
+
+• Now that all your files are in your GitHub, we need to download them
+• There are two easy ways
+1) Fast and easy Room Service
+2) Slow and Fun Manual syncing
+• Room Service
+1) cd into .repo from romsource
+ cd .repo
+2) Make directory local_manifests
+ mkdir local_manifests
+3) Make room service file
+ nano roomservice.xml
+4) Sync repo to download files (in the end (after saving room service xml)
+
+• Making the roomservice.xml is as easy as copy paste.
+Visit 
+https://github.com/vrnsoma/local_manifests/blob/lineage-17.1/roomservice.xml
+and copy and paste it into a text editor and edit it then paste it into the terminal window (nano)
+
+	Hint for Device Tree
+		Example: link= userabc/repositories/device_samsung/crownlte
+			 path= device/samsung/crownlte
+			 remote= github
+			 revision= aim
+
+• Resync Repo like I mentioned before
+
+BUILDING
+• Run
+###. build/envsetup.sh
+• Then
+###brunch codename
+• Make sure to clean build by running this in between builds
+###make clobber && make clean
+• If you are using a slow system and want to improve build speeds, use the following command
+for making partially clean builds for incremental updates
+###make installclean
+• Building without cleaning is called dirty building and is never advised and do not do this unless
+you know what you are doing
