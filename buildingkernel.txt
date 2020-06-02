@@ -1,0 +1,28 @@
+There are two ways to build kernel
+1) BUILD WITHIN ROM SOURCE
+2) BUILD STANDALONE
+
+BUILD WITHIN ROM SOURCE
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+make bootimage
+
+BUILD STANDALONE
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Download the source from Samsungs OSRC, you will have a ZIP, inside it is something like "kernel.tar.gz"
+Extract that one and you get your kernel source looking stuff
+If we look in your ROM for example EvoX, you see it has some toolchains in the "prebuilt" folder
+We need this toolchains to build the kernel
+You can point it to this one or you can download the toolchains separately
+DOWNLOAD TOOLCHAIN FROM --->
+
+export CROSS_COMPILE=YourPath <—- Here is our toolchain path
+
+
+export SUBARCH=arm64
+export ARCH=arm64            <——- You can see these in your boardconfig too
+
+
+export ANDROID_MAJOR_VERSION=q <—— this is required for Samsung since else WiFi and stuff breaks, always some random bugs happen
+
+make -j$(nproc --all)
+We must before running make "make defconfig"
