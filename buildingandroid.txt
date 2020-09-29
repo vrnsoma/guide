@@ -28,10 +28,10 @@ Table of Contents
 
 Prerequisites
 	• Your system should have at least 8GB RAM and 4 cores (Use Zram for 8gb ram devices)
-	• Strong internet connection. You will be downloading 30-50GB worth of files
+	• Strong internet connection. You will be downloading 50GB+ worth of files
 	• Ubuntu - this should be installed alongside a primary OS. NOT VM
 	• Minimum 250GB of free disk space (you can sync 1 ROMs and build for 3 devices at once)
-	• Git - Reas some documentation
+	• Git - Read some documentation
 	• Command Line - get yourself familiar, learn with CodeAcademy
 
 -----------------------------------------------------------------------------------------------------------
@@ -70,7 +70,7 @@ Understanding This Doc
 	  For other Distros refer to the readme that has also been cloned
 
 	• Run the script
-	###. android_build_env.sh
+	### . android_build_env.sh
 
 	• Setup GitHub using on screen instructions
 
@@ -142,11 +142,11 @@ GETTING DEVICE SPECIFIC FILES
 	  developer is working on your device then it is possible to modify the tree to work with newer
 	  version of android but it may take some effort.
 
-	• In case your tree doesnt match with the rom vernsion that you have downloaded, the easiest and best option is 
+	• In case your tree doesnt match with the rom version that you have downloaded, the easiest and best option is 
 	  to scrap everything and download the source version that your tree is designed for
 
 	• To scrap everything, use
- 	###rm -rf “folder containing rom"
+ 	### rm -rf “folder containing rom"
 
 	• To modify the init command to download an older version you need to pick out the branch you
 	  need (the branch is basically the version the newer version is added to a new branch)
@@ -157,7 +157,7 @@ GETTING DEVICE SPECIFIC FILES
 	• To get the device specific files, we need to fork them to your GitHub.
 	  Find the stuff (kernel vendor device tree hardware) and fork them 
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	|NOTE:											   |
+	|  NOTE:										   |
 	|   Forking basically copies them to your GitHub                                           |
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		
@@ -206,13 +206,13 @@ GETTING DEVICE SPECIFIC FILES
 	
 			• Room Service
 				1) cd into .repo from romsource
-					###cd .repo
+					### cd .repo
 	
 				2) Make directory local_manifests
-					###mkdir local_manifests
+					### mkdir local_manifests
 
 				3) Make room service file
-					###nano roomservice.xml
+					### nano roomservice.xml
 						(follow new bullet point on how to make roomservice.xml)
 
 				4) Return to ROM folder
@@ -240,17 +240,17 @@ GETTING DEVICE SPECIFIC FILES
 
 BUILDING
 	• Run
-	###. build/envsetup.sh
+	### . build/envsetup.sh
 
 	• Then
-	###brunch codename
+	### brunch codename
 
 	• Make sure to clean build by running this in between builds
-	###make clobber && make clean
+	### make clobber && make clean
 
 	• If you are using a slow system and want to improve build speeds, use the following command
 	  for making partially clean builds for incremental updates
-	###make installclean
+	### make installclean
 
 	• Building without cleaning is called dirty building and is never advised and do not do this unless
 	  you know what you are doing
