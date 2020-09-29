@@ -96,6 +96,10 @@ Understanding This Doc
 
 	• Make a directory for your ROM
 	### mkdir “ROMNAME”
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	|NOTE:											   |
+	|   this will make folder in directory home/username/romname                               |
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 	• Cd in and initiate repository, this basically tells your computer where to download source files from. 
 	  The repository initiation command can be found on the GitHub page under “manifest” then scroll down to 
@@ -124,88 +128,109 @@ Understanding This Doc
 
 
 GETTING DEVICE SPECIFIC FILES
-• As most of you know the kernel acts as the translator between the OS and your actual hardware
-• The files mentioned above are android version specific and will only work with that android
-version
-• The developer for your device will have these files on their GitHub and its usually linked at the
-op of other rom threads as source code
-• You have to make sure that the rom version you downloaded matches up
-• If the device tree is for an older version then wait until your dev. releases the latest trees, if no
-developer is working on your device then it is possible to modify the tree to work with newer
-version of android but if you are capable of doing that you wouldn’t be here
-• Your best option is to scrap everything and download the source version that your tree is
-designed for
-• To scrap everything, use
- sudo rm -rf “folder containing rom"
-• To modify the init command to download an older version you need to pick out the branch you
-need (the branch is basically the version the newer version is added to a new branch)
-• Change the init command after -b to include desired branch. For example
- repo init -b ten to repo init -b seven
-• There are two ways to download device specific files but before that we need to for them to
-your GitHub . find the stuff (kernel vendor device tree hardware) and fork them this basically
-copies them to your GitHub use the browser on your machine
-• At this point we need to know if we need to modify the device tree as some ROMs don’t require
-you to modify it (CrDroid)
-• If modification is required follow these steps , otherwise skip to the end of this section
-• After forking we need to modify one set of files we will do this from the browser for ease of
-understanding there are three files that need modification and they are located your device
-tree.
-• Some tree developers may split your device tree into two parts if there is more than one phone
-running the same SOC, so keep an eye out for that.
-• The files that we need to modify are under your "device codename" device tree, not "device SOC-common" device tree.
-• For example; we need to go to "device_samsung_crownlte" tree not "device_samsung_universal9810-common"
-• In here the three files that need modification are
-1) Android Products.mk
-2) lineage.dependencies
-3) lineage_"device codename".mk (example:lineage_crownlte.mk)
-• First open AndriodProducts.mk and click the pencil icon at the top right corner of the box that
-encloses the code. Here replace wherever you see lineage with name of ROM in lowercase only.
-When saving click the option to stat pull request and create branch...trust me and do this, it will
-be helpful when you are building multiple ROMS. Better to start organising your work. Name the
-branch with the name of your ROM in lower case. You will be taken to another page... there
-change the tile to update "RomName". and click start pull request. This is all required to stay
-organised
-• Go back to device tree and you select the branch you just made, you can see that the file you
-modified is under this branch. Whatever you modify in this branch stays here until you merge
-master and branch. This is also very useful when you are making experimental changes, once it
-works you can merge it, but in this case we will never merge because we want our changes to
-stay separate
-• Second, open lineage dependencies.mk and hit the pencil icon... rename file to
-"romname".dependencies (ecample: aim.dependencies)
-• Third, open lineage_"codename".mk and rename to "romname"_"codename".mk and replace
-lineage with "romname in the code. (Remember,use lowercase)
-• Make sure that in above you are committing the changes to the branch you just created... If
-it says lineage instead, you didn't select the branch before modifying, go back to device tree and
-select correct branch
-• If you are building an older version of android make sure you branch out the right branch for your trees
+	• As most of you know the kernel acts as the translator between the OS and your actual hardware
 
- People who do not need to modify can join us here
+	• The files mentioned above are android version specific and will only work with that android
+	  version
 
-• Now that all your files are in your GitHub, we need to download them
-• There are two easy ways
-1) Fast and easy Room Service
-2) Slow and Fun Manual syncing
-• Room Service
-1) cd into .repo from romsource
- cd .repo
-2) Make directory local_manifests
- mkdir local_manifests
-3) Make room service file
- nano roomservice.xml
-4) Sync repo to download files (in the end (after saving room service xml)
+	• The developer for your device will have these files on their GitHub and its usually linked at the
+	  op of other rom threads as source code
 
-• Making the roomservice.xml is as easy as copy paste.
-Visit 
-https://github.com/vrnsoma/local_manifests/blob/lineage-17.1/roomservice.xml
-and copy and paste it into a text editor and edit it then paste it into the terminal window (nano)
+	• You have to make sure that the rom version you downloaded matches up
 
-	Hint for Device Tree
-		Example: link= userabc/repositories/device_samsung/crownlte
-			 path= device/samsung/crownlte
-			 remote= github
-			 revision= aim
+	• If the device tree is for an older version then wait until your dev. releases the latest trees, if no
+	  developer is working on your device then it is possible to modify the tree to work with newer
+	  version of android but it may take some effort.
 
-• Resync Repo like I mentioned before
+	• In case your tree doesnt match with the rom vernsion that you have downloaded, the easiest and best option is to scrap 		  everything and download the source version that your tree is designed for
+
+	• To scrap everything, use
+ 	###rm -rf “folder containing rom"
+
+	• To modify the init command to download an older version you need to pick out the branch you
+	  need (the branch is basically the version the newer version is added to a new branch)
+
+	• Change the init command after -b to include desired branch. For example
+ 		repo init -b ten to repo init -b seven
+
+	• To get the device specific files, we need to fork them to your GitHub.
+	  Find the stuff (kernel vendor device tree hardware) and fork them 
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	|NOTE:											   |
+	|   Forking basically copies them to your GitHub                                           |
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		
+	• At this point we need to know if we need to modify the device tree as some ROMs don’t require
+	  you to modify it (CrDroid)(LOS)
+
+	• Some roms require only partial modifications, this is rom specific so I wont be going too much into detail
+
+	• If modification is required follow these steps , otherwise skip to the end of this section
+
+	• After forking we need to modify the files we will do this from the browser for ease of
+	  understanding 
+
+	•There are three files that need modification and they are located your device tree
+
+	• Some tree developers may split your device tree into two parts if there is more than one phone
+	  running the same SOC, so keep an eye out for that.
+
+	• The files that we need to modify are under your "device codename" device tree, not "device SOC-common" device tree.
+
+	• For example; we need to go to "device_samsung_crownlte" tree not "device_samsung_universal9810-common"
+
+	• In here the three files that need modification are
+		1) Android Products.mk
+		2) lineage.dependencies
+		3) lineage_"device codename".mk (example:lineage_crownlte.mk)
+
+	• First open AndriodProducts.mk Here replace wherever you see lineage with name of ROM in lowercase only.
+	  
+	• Second, open lineage dependencies.mk and rename file to "romname".dependencies (ecample: aim.dependencies)
+
+	• Third, open lineage_"codename".mk and rename to "romname"_"codename".mk and replace
+	  lineage with "romname in the code. (Remember,use lowercase)
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	|NOTE:											                     |
+	|   If you are building an older version of android make sure you branch out the right branch for your trees |
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ 	People who do not need to modify can join us here
+
+	• Now that all your files are in your GitHub, we need to download them
+
+	• There are two easy ways
+		1) Fast and easy Room Service
+		2) Slow and boring manual cloning
+	
+			• Room Service
+				1) cd into .repo from romsource
+					###cd .repo
+	
+				2) Make directory local_manifests
+					###mkdir local_manifests
+
+				3) Make room service file
+					###nano roomservice.xml
+
+				4) Return to ROM folder
+					### cd && cd "romfolder"
+
+	• Making the roomservice.xml is as easy as copy paste.
+		Visit 
+			https://github.com/vrnsoma/local_manifests/blob/lineage-17.1/roomservice.xml
+		and copy and paste it into a text editor and edit it then paste it into the terminal window (nano)
+
+		Hint for Device Tree
+			Example: link= userabc/repositories/device_samsung/crownlte (location on github)
+			 	 path= device/samsung/crownlte (Where it should download to)
+			 	 remote= github (where files are stored)
+			 	 revision= branchname (which version you want)
+
+	• Resync Repo like I mentioned before
+
+		###     repo sync  -f --force-sync --no-clone-bundle --no-tags -j$(nproc --all)
+
 
 
 -----------------------------------------------------------------------------------------------------------
@@ -227,3 +252,14 @@ BUILDING
 
 	• Building without cleaning is called dirty building and is never advised and do not do this unless
 	  you know what you are doing
+
+-----------------------------------------------------------------------------------------------------------
+
+CREDITS
+
+All threads on XDA
+All guide on Github
+All devs found on Telegram
+If you want specific credits plz do pm me!
+
+-----------------------------------------------------------------------------------------------------------
