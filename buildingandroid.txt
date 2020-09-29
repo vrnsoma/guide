@@ -142,8 +142,8 @@ GETTING DEVICE SPECIFIC FILES
 	  developer is working on your device then it is possible to modify the tree to work with newer
 	  version of android but it may take some effort.
 
-	• In case your tree doesnt match with the rom vernsion that you have downloaded, the easiest and best option is to scrap
-	  everything and download the source version that your tree is designed for
+	• In case your tree doesnt match with the rom vernsion that you have downloaded, the easiest and best option is 
+	  to scrap everything and download the source version that your tree is designed for
 
 	• To scrap everything, use
  	###rm -rf “folder containing rom"
