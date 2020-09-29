@@ -7,6 +7,7 @@ Table of Contents
 	6) Getting device specific files
 	7) Building
 
+-----------------------------------------------------------------------------------------------------------
 
  GETTING STARTED
 	• This guide will help you understand the basics of rom building.
@@ -23,6 +24,7 @@ Table of Contents
 	• If you are planning to modify a ROM, always ask for permission
 	• If you are planning on including other peoples work in your rom always ask for permission
 
+-----------------------------------------------------------------------------------------------------------
 
 Prerequisites
 	• Your system should have at least 8GB RAM and 4 cores (Use Zram for 8gb ram devices)
@@ -31,6 +33,8 @@ Prerequisites
 	• Minimum 250GB of free disk space (you can sync 1 ROMs and build for 3 devices at once)
 	• Git - Reas some documentation
 	• Command Line - get yourself familiar, learn with CodeAcademy
+
+-----------------------------------------------------------------------------------------------------------
 
 Understanding This Doc
 	• Notes with background information will be given in a box surrounded by ~
@@ -44,7 +48,7 @@ Understanding This Doc
 
 	• Now the you have finished setting up, a special environment is required for building.
 
-	• Preparing the environment is as easy as double clicking .exe in Windows or .dmg in MacOS, thanks to 		  developer Akhil N.
+	• Preparing the environment is as easy as double clicking .exe in Windows or .dmg in MacOS, thanks to developer Akhil N.
 
 	• We need to clone his scripts (installer) from his GitHub
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -61,46 +65,61 @@ Understanding This Doc
 	• List out directory
 	### ls
 
-	• Find the file that corresponds to our Linux build. Since we are using Ubuntu it will be 		  android_build_env.sh
+	• Find the file that corresponds to our Linux build. Since we are using Ubuntu it will be android_build_env.sh
+	  For other Distros refer to the readme that has also been cloned
 
-• Run the script
-###. android_build_env.sh
+	• Run the script
+	###. android_build_env.sh
 
-• Setup GitHub using on screen instructions
+	• Setup GitHub using on screen instructions
 
-• Congratulations you set up your computer for building
+	• Congratulations you set up your computer for building
 
-• Go back the previous dir that you were originally on (/home/username)
-### cd
+	• Go back the previous dir that you were originally on (/home/username)
+	### cd
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	|NOTE:											   |
 	|   cd will always take you to home/username                                               |
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
+-----------------------------------------------------------------------------------------------------------
 
 
  GETTING THE SOURCE
-• This is probably one of the worst steps, you have to wait a while 
-• GCloud users will be able to download source in 15 minutes
-• Other users may have to wait longer (depends on internet connection speed)
-• Make a directory for your ROM
-### mkdir “ROMNAME”
-• Cd in and initiate repository, this basically tells your computer where to download source files
-from. The repository initiation command can be found on the GitHub page under “manifest” then scroll down to repo initialisation and copy command
-• It should look like
-###  repo init -u git://github.com/crdroidandroid/android.git -b 10.0
+	• This is probably one of the worst steps, you have to wait a while 
+
+	• GCloud users will be able to download source in 15 minutes
+
+	• Other users may have to wait longer (depends on internet connection speed)
+
+	• Make a directory for your ROM
+	### mkdir “ROMNAME”
+
+	• Cd in and initiate repository, this basically tells your computer where to download source files from. 
+	  The repository initiation command can be found on the GitHub page under “manifest” then scroll down to 
+	  repo initialisation and copy command
+
+	• It should look like
+	###  repo init -u git://github.com/crdroidandroid/android.git -b 10.0
 		HINTS
-			1) Linux users can paste into terminal using Ctrl + Shift + V
-			2) Linux users can copy from terminal using Ctrl + Shift + C
-			3) GCloud users can paste into window using Ctrl + V
-			4) GCloud users can copy from window simply by highlighting
-			5) GCloud users using ssh from terminal can just follow terminal commands
-• Once repo is initialised, you can begin download using
-###     repo sync  -f --force-sync --no-clone-bundle --no-tags -j$(nproc --all)
-• Let everything download
 
+  	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	|NOTE:											   |
+	|   1) Linux users can paste into terminal using Ctrl + Shift + V                          |
+	|   2) Linux users can copy from terminal using Ctrl + Shift + C                           |
+	|   3) GCloud users can paste into window using Ctrl + V                                   |
+	|   4) GCloud users can copy from window simply by highlighting                            |
+	|   5) GCloud users using ssh from terminal can just follow terminal commands              |
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			
+			
+	• Once repo is initialised, you can begin download using
+	###     repo sync  -f --force-sync --no-clone-bundle --no-tags -j$(nproc --all)
 
+	• Let everything download
+
+-----------------------------------------------------------------------------------------------------------
 
 
 GETTING DEVICE SPECIFIC FILES
