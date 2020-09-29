@@ -174,7 +174,7 @@ GETTING DEVICE SPECIFIC FILES
 	•There are three files that need modification and they are located your device tree
 
 	• Some tree developers may split your device tree into two parts if there is more than one phone
-	  running the same SOC, so keep an eye out for that.
+	  running the same SOC, so keep an eye out for that. (devices that have the same soc are like the op3/op3t and the op7/op7p)
 
 	• The files that we need to modify are under your "device codename" device tree, not "device SOC-common" device tree.
 
@@ -213,6 +213,7 @@ GETTING DEVICE SPECIFIC FILES
 
 				3) Make room service file
 					###nano roomservice.xml
+						(follow new bullet point on how to make roomservice.xml)
 
 				4) Return to ROM folder
 					### cd && cd "romfolder"
@@ -220,7 +221,7 @@ GETTING DEVICE SPECIFIC FILES
 	• Making the roomservice.xml is as easy as copy paste.
 		Visit 
 			https://github.com/vrnsoma/local_manifests/blob/lineage-17.1/roomservice.xml
-		and copy and paste it into a text editor and edit it then paste it into the terminal window (nano)
+		and copy and paste it into a text editor and edit it then paste it into the terminal window (step 3 in above point)
 
 		Hint for Device Tree
 			Example: link= userabc/repositories/device_samsung/crownlte (location on github)
@@ -253,6 +254,13 @@ BUILDING
 
 	• Building without cleaning is called dirty building and is never advised and do not do this unless
 	  you know what you are doing
+
+-----------------------------------------------------------------------------------------------------------
+
+
+KEEPING SETUP UP TO DATE
+
+	• Repo sync will keep your rom and device specific files that have been deined in roomservice up to date
 
 -----------------------------------------------------------------------------------------------------------
 
