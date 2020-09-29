@@ -1,45 +1,47 @@
 Table of Contents
-1) Getting started
-2) Prerequisites
-3) Understanding the DOC
-4) Preparing Linux environment
-5) Getting the source
-6) Getting device specific files
-7) Building
+	1) Getting started
+	2) Prerequisites
+	3) Understanding the DOC
+	4) Preparing Linux environment
+	5) Getting the source
+	6) Getting device specific files
+	7) Building
 
 
  GETTING STARTED
-• This guide will help you understand the basics of rom building.
-• You must have exprience with linux and terminal
-• You must read everything at least once
-• If you get stuck at any step, google is your best friend. 
-  If you still struggle, these are places you can get help 
-  1) This thread
-  2) GitHub
-  3) Other XDA threads
-  4) Telegram (Your SOC groups or Android Builders Help)
-• Build only if you have time to spare, never rush through the learning stage
-• Never think about skipping a step
-• If you are planning to modify a ROM, always ask for permission
-• If you are planning on including other peoples work in your rom always ask for permission
+	• This guide will help you understand the basics of rom building.
+	• You must have exprience with linux and terminal
+	• You must read everything at least once
+	• If you get stuck at any step, google is your best friend. 
+	  If you still struggle, these are places you can get help 
+	      1) This thread
+	      2) GitHub
+	      3) Other XDA threads
+	      4) Telegram (Your SOC groups or Android Builders Help)
+	• Build only if you have time to spare, never rush through the learning stage
+	• Never think about skipping a step
+	• If you are planning to modify a ROM, always ask for permission
+	• If you are planning on including other peoples work in your rom always ask for permission
 
 
 Prerequisites
-• Your system should have at least 8GB RAM and 4 cores (Use Zram for 8gb ram devices)
-• Strong internet connection. You will be downloading 30-50GB worth of files
-• Ubuntu - this should be installed alongside a primary OS. NOT VM
-• Minimum 250GB of free disk space (you can sync 1 ROMs and build for 3 devices at once)
-• Git - Reas some documentation
-• Command Line - get yourself familiar, learn with CodeAcademy
+	• Your system should have at least 8GB RAM and 4 cores (Use Zram for 8gb ram devices)
+	• Strong internet connection. You will be downloading 30-50GB worth of files
+	• Ubuntu - this should be installed alongside a primary OS. NOT VM
+	• Minimum 250GB of free disk space (you can sync 1 ROMs and build for 3 devices at once)
+	• Git - Reas some documentation
+	• Command Line - get yourself familiar, learn with CodeAcademy
 
 Understanding This Doc
-• Notes with background information will be given in a box surrounded by ~
-• ### is used to represent a command that is run from terminal
+	• Notes with background information will be given in a box surrounded by ~
+	• ### is used to represent a command that is run from terminal
 
+
+-----------------------------------------------------------------------------------------------------------
 
 
  PREPARING LINUX ENVIRONMENT FOR BUILDING
---------------------------------------------
+
 • Now the you have finished setting up, a special environment is required for building.
 
 • Preparing the environment is as easy as double clicking .exe in Windows or .dmg in MacOS, thanks to developer Akhil N.
