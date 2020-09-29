@@ -42,26 +42,26 @@ Understanding This Doc
 
  PREPARING LINUX ENVIRONMENT FOR BUILDING
 
-• Now the you have finished setting up, a special environment is required for building.
+	• Now the you have finished setting up, a special environment is required for building.
 
-• Preparing the environment is as easy as double clicking .exe in Windows or .dmg in MacOS, thanks to developer Akhil N.
+	• Preparing the environment is as easy as double clicking .exe in Windows or .dmg in MacOS, thanks to 		  developer Akhil N.
 
-• We need to clone his scripts (installer) from his GitHub
+	• We need to clone his scripts (installer) from his GitHub
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	|NOTE:											   |
 	|   A script is a file which contains multiple commands that run sequentially when executed|
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-### git clone https://github.com/akhilnarang/scripts
+	### git clone https://github.com/akhilnarang/scripts
 
-• This should copy the scripts to directory /home/username/scripts
+	• This should copy the scripts to directory /home/username/scripts
 
-• Cd into the directory called setup
-### cd scripts/setup
+	• Cd into the directory called setup
+	### cd scripts/setup
 
-• List out directory
-### ls
+	• List out directory
+	### ls
 
-• Find the file that corresponds to our Linux build. Since we are using Ubuntu it will be android_build_env.sh
+	• Find the file that corresponds to our Linux build. Since we are using Ubuntu it will be 		  android_build_env.sh
 
 • Run the script
 ###. android_build_env.sh
