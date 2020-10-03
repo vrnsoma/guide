@@ -133,8 +133,8 @@ GETTING DEVICE SPECIFIC FILES
 	• The files mentioned above are android version specific and will only work with that android
 	  version
 
-	• The developer for your device will have these files on their GitHub and its usually linked at the
-	  op of other rom threads as source code
+	• The developer for your device aka dt maintainer will have these files on their GitHub and its 
+	  usually linked at the end of the op of other rom threads in the source code section
 
 	• You have to make sure that the rom version you downloaded matches up
 
@@ -213,7 +213,7 @@ GETTING DEVICE SPECIFIC FILES
 
 				3) Make room service file
 					### nano roomservice.xml
-						(follow new bullet point on how to make roomservice.xml)
+						(follow next bullet point on how to make roomservice.xml)
 
 				4) Return to ROM folder
 					### cd && cd "romfolder"
