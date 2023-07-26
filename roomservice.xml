@@ -3,6 +3,8 @@
   <project name="LineageOS/android_device_samsung_gta4xl-common" path="device/samsung/gta4xl-common" remote="github" revision="lineage-20" />
   <project name="LineageOS/android_device_samsung_gta4xlwifi" path="device/samsung/gta4xlwifi" remote="github" revision="lineage-20" />
   <project name="LineageOS/android_kernel_samsung_gta4xl" path="kernel/samsung/gta4xl" remote="github" revision="lineage-20" />
+  <project name="LineageOS/android_device_samsung_gta4xl" path="device/samsung/gta4xl" remote="github" revision="lineage-20" /> 
+  <project name="TheMuppets/proprietary_vendor_samsung_gta4xl" path="vendor/samsung/gta4xl" remote="github" revision="lineage-20" />
   <project name="TheMuppets/proprietary_vendor_samsung_gta4xl-common" path="vendor/samsung/gta4xl-common" remote="github" revision="lineage-20" />
   <project name="TheMuppets/proprietary_vendor_samsung_gta4xlwifi" path="vendor/samsung/gta4xlwifi" remote="github" revision="lineage-20" />
   <project name="LineageOS/android_device_samsung_slsi_sepolicy" path="device/samsung_slsi/sepolicy" remote="github" revision="lineage-20" />
