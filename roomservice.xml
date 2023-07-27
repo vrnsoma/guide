@@ -18,5 +18,5 @@
    <project name="LineageOS/android_hardware_samsung_slsi-linaro_config" path="hardware/samsung_slsi-linaro/config" remote="github" revision="lineage-20" />
    <project name="LineageOS/android_hardware_samsung_slsi-linaro_openmax" path="hardware/samsung_slsi-linaro/openmax" remote="github" revision="lineage-20" />
   
-   <project name="LineageOS/hardware_samsung" path="hardware/samsung" remote="github" revision="lineage-20" />
+   <project name="LineageOS/android_hardware_samsung" path="hardware/samsung" remote="github" revision="lineage-20" />
 </manifest>
