@@ -10,7 +10,7 @@
 
    <project name="linux4-bringup-priv/android_device_samsung_slsi_sepolicy" path="device/samsung_slsi/sepolicy" remote="github" revision="lineage-21.0" />
 
-   <project name="linux4-bringup-privS/android_hardware_samsung_slsi_libbt" path="hardware/samsung_slsi/libbt" remote="github" revision="lineage-21.0" />
+   <project name="linux4-bringup-priv/android_hardware_samsung_slsi_libbt" path="hardware/samsung_slsi/libbt" remote="github" revision="lineage-21.0" />
    <project name="linux4-bringup-priv/android_hardware_samsung_slsi_scsc_wifibt_wifi_hal" path="hardware/samsung_slsi/scsc_wifibt/wifi_hal" remote="github" revision="lineage-21.0" />
    <project name="linux4-bringup-priv/android_hardware_samsung_slsi_scsc_wifibt_wpa_supplicant_lib" path="hardware/samsung_slsi/scsc_wifibt/wpa_supplicant_lib" remote="github" revision="lineage-21.0" />
    <project name="linux4-bringup-priv/android_hardware_samsung_slsi-linaro_exynos" path="hardware/samsung_slsi-linaro/exynos" remote="github" revision="lineage-21.0" />
