@@ -1,0 +1,100 @@
+From 89af0f1c0a1eecd593bfe353a6cebf5b4457025b Mon Sep 17 00:00:00 2001
+From: Kfkcome <killzion666@gmail.com>
+Date: Wed, 9 Aug 2023 12:48:20 +0800
+Subject: [PATCH] Launcher3:quickstep:fixed switch app in tablet fixed switch
+ app in tablet fixed app windows sized in RecentsView(to be normal) test:
+ Xiaomi Pad 5 (nabu)
+
+---
+ .../android/quickstep/views/RecentsView.java  | 68 -------------------
+ 1 file changed, 68 deletions(-)
+
+diff --git a/quickstep/src/com/android/quickstep/views/RecentsView.java b/quickstep/src/com/android/quickstep/views/RecentsView.java
+index cf6a74dd8f..cb46d63753 100644
+--- a/quickstep/src/com/android/quickstep/views/RecentsView.java
++++ b/quickstep/src/com/android/quickstep/views/RecentsView.java
+@@ -4398,7 +4398,6 @@ public abstract class RecentsView<ACTIVITY_TYPE extends StatefulActivity<STATE_T
+                         .setScroll(getScrollOffset()));
+         setImportantForAccessibility(isModal() ? IMPORTANT_FOR_ACCESSIBILITY_NO
+                 : IMPORTANT_FOR_ACCESSIBILITY_AUTO);
+-        doScrollScale();
+     }
+ 
+     private void updatePivots() {
+@@ -6026,73 +6025,6 @@ public abstract class RecentsView<ACTIVITY_TYPE extends StatefulActivity<STATE_T
+     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+         super.onScrollChanged(l, t, oldl, oldt);
+         dispatchScrollChanged();
+-        doScrollScale();
+-    }
+-
+-    private void doScrollScale() {
+-        if (showAsGrid())
+-            return;
+-
+-        //nick@lmo-20231004 if rotating launcher is enabled, rotation works differently
+-        // There are many edge cases (going from landscape app to recents, rotating in recents etc)
+-        boolean touchInLandscape = mOrientationState.getTouchRotation() != ROTATION_0
+-                                && mOrientationState.getTouchRotation() != ROTATION_180;
+-        boolean layoutInLandscape = mOrientationState.getRecentsActivityRotation() != ROTATION_0
+-                                && mOrientationState.getRecentsActivityRotation() != ROTATION_180;
+-        boolean canRotateRecents = mOrientationState.isRecentsActivityRotationAllowed();
+-        int childCount = Math.min(mPageScrolls.length, getChildCount());
+-        int curScroll = !canRotateRecents && touchInLandscape && !layoutInLandscape
+-                             ? getScrollY() : getScrollX();
+-
+-        for (int i = 0; i < childCount; i++) {
+-            View child = getChildAt(i);
+-            int scaleArea = child.getWidth() + mPageSpacing;
+-            int childPosition = mPageScrolls[i];
+-            int scrollDelta = Math.abs(curScroll - childPosition);
+-            if (scrollDelta > scaleArea) {
+-                child.setScaleX(mScrollScale);
+-                child.setScaleY(mScrollScale);
+-            } else {
+-                float scale = mapToRange(scrollDelta, 0, scaleArea, 1f, mScrollScale, LINEAR);
+-                child.setScaleX(scale);
+-                child.setScaleY(scale);
+-            }
+-            if (!(child instanceof TaskView && mRemoteTargetHandles != null)) continue;
+-            TaskView tv = (TaskView) child;
+-            for (RemoteTargetHandle rth : mRemoteTargetHandles) {
+-                TransformParams params = rth.getTransformParams();
+-                RemoteAnimationTargets targets = params.getTargetSet();
+-                for (int id : tv.getTaskIds()) {
+-                    if (targets != null && targets.findTask(id) != null) {
+-                        rth.getTaskViewSimulator().scrollScale.value =
+-                                mOrientationHandler.getPrimaryValue(
+-                                    tv.getScaleX(),
+-                                    tv.getScaleY()
+-                                );
+-                    }
+-                }
+-            }
+-        }
+-    }
+-
+-    public float getScrollScale(RemoteTargetHandle rth) {
+-        int childCount = Math.min(mPageScrolls.length, getChildCount());
+-        for (int i = 0; i < childCount; i++) {
+-            View child = getChildAt(i);
+-            if (!(child instanceof TaskView && !showAsGrid())) continue;
+-            TaskView tv = (TaskView) child;
+-            TransformParams params = rth.getTransformParams();
+-            RemoteAnimationTargets targets = params.getTargetSet();
+-            for (int id : tv.getTaskIds()) {
+-                if (targets != null && targets.findTask(id) != null) {
+-                    return mOrientationHandler.getPrimaryValue(
+-                                tv.getScaleX(),
+-                                tv.getScaleY()
+-                           );
+-                }
+-            }
+-        }
+-        return 1f;
+     }
+ 
+     private void dispatchScrollChanged() {
+-- 
+2.44.0
+
